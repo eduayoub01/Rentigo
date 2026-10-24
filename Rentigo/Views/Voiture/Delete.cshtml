@@ -1,0 +1,33 @@
+﻿@model Rentigo.Models.Voiture
+
+@{
+    ViewData["Title"] = "Supprimer le Véhicule #" + Model.Id;
+}
+
+<div class="container py-4" style="max-width: 650px;">
+    <div class="card border-danger shadow-sm">
+        <div class="card-header bg-danger text-white py-3">
+            <h4 class="card-title mb-0">⚠️ Confirmation de retrait du parc</h4>
+        </div>
+        <div class="card-body p-4">
+            <p class="text-danger fw-bold fs-5 mb-3">Confirmez-vous la suppression de ce véhicule de la flotte ?</p>
+
+            <div class="p-3 bg-light rounded border mb-4">
+                <h5 class="mb-1 text-dark">@Model.Marque @Model.Modele</h5>
+                <div class="text-muted small mt-1">
+                    <span class="badge bg-secondary me-2">@Model.Matricule</span>
+                    <span class="badge bg-primary bg-opacity-25 text-primary me-2">@(Model.CategoryVoiture?.Libelle ?? "Sans catégorie")</span>
+                    <span class="fw-bold text-success">@Model.PrixJour.ToString("N2") TND / jour</span>
+                </div>
+            </div>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-danger px-4">🗑️ Supprimer définitivement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // 2. ENREGISTREMENT DU REPOSITORY DANS LE CONTENEUR IOC (Cycle Scoped)
 builder.Services.AddScoped<ICategoryVoitureRepository, CategoryVoitureRepository>();
 
+// 3. ENREGISTREMENT DU REPOSITORY DES VOITURES (Cycle Scoped)
+builder.Services.AddScoped<IVoitureRepository, VoitureRepository>();
+
 // Ajout du support pour Contrôleurs et Vues MVC
 builder.Services.AddControllersWithViews();
 

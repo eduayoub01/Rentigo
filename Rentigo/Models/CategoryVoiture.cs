@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace Rentigo.Models
 
@@ -29,5 +30,10 @@ namespace Rentigo.Models
         [NotMapped]
         [Display(Name = "Photo illustrative")]
         public IFormFile? ImageFile { get; set; }
+
+        // =========================================================================
+        // RELATION INVERSE : Une catégorie regroupe plusieurs voitures
+        // =========================================================================
+        public ICollection<Voiture> Voitures { get; set; } = new List<Voiture>();
     }
 }

@@ -45,6 +45,64 @@ namespace Rentigo.Migrations
 
                     b.ToTable("CategoriesVoitures");
                 });
+
+            modelBuilder.Entity("Rentigo.Models.Voiture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Annee")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryVoitureId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EstDisponible")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Marque")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Matricule")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Modele")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("PrixJour")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryVoitureId");
+
+                    b.ToTable("Voitures");
+                });
+
+            modelBuilder.Entity("Rentigo.Models.Voiture", b =>
+                {
+                    b.HasOne("Rentigo.Models.CategoryVoiture", "CategoryVoiture")
+                        .WithMany("Voitures")
+                        .HasForeignKey("CategoryVoitureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoryVoiture");
+                });
+
+            modelBuilder.Entity("Rentigo.Models.CategoryVoiture", b =>
+                {
+                    b.Navigation("Voitures");
+                });
 #pragma warning restore 612, 618
         }
     }

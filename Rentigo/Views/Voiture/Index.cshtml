@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Rentigo.Models.Voiture>
+
+@{
+    ViewData["Title"] = "Flotte de Véhicules";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <div>
+            <h1 class="h2 mb-1">Flotte de Véhicules</h1>
+            <p class="text-muted mb-0">Gestion complète du parc automobile et disponibilité en temps réel</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> + Ajouter un Véhicule
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Succès !</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5 border rounded bg-light">
+            <div class="display-6 text-muted mb-3">🚘</div>
+            <h4 class="text-muted">Aucune voiture enregistrée dans le parc</h4>
+            <p class="text-secondary">Ajoutez votre premier véhicule en l'associant à une catégorie existante.</p>
+            <a asp-action="Create" class="btn btn-outline-primary">Ajouter une voiture</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive bg-white rounded shadow-sm border">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Véhicule</th>
+                        <th>Matricule</th>
+                        <th>Catégorie</th>
+                        <th>Année</th>
+                        <th>Tarif / Jour</th>
+                        <th>Disponibilité</th>
+                        <th style="width: 230px;" class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong class="text-dark fs-6">@item.Marque @item.Modele</strong>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark border font-monospace">@item.Matricule</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">
+                                    @(item.CategoryVoiture?.Libelle ?? "Non catégorisée")
+                                </span>
+                            </td>
+                            <td class="text-muted">@item.Annee</td>
+                            <td class="fw-bold text-success">
+                                @item.PrixJour.ToString("N2") TND
+                            </td>
+                            <td>
+                                @if (item.EstDisponible)
+                                {
+                                    <span class="badge bg-success">✓ Disponible</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">✕ En location</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1">Détails</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning me-1">Modifier</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

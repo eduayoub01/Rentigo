@@ -10,7 +10,10 @@ namespace Rentigo.Data
         {
         }
 
-        // Table « CategoriesVoitures » dans la base de données SQL Server
+        // Table 1 : Segments & Catégories de véhicules
         public DbSet<CategoryVoiture> CategoriesVoitures { get; set; }
+
+        // Table 2 : Flotte de véhicules en location
+        public DbSet<Voiture> Voitures { get; set; }
     }
 }

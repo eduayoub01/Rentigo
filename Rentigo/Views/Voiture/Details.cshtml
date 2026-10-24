@@ -1,0 +1,53 @@
+﻿@model Rentigo.Models.Voiture
+
+@{
+    ViewData["Title"] = "Fiche Véhicule : " + Model.Marque + " " + Model.Modele;
+}
+
+<div class="container py-4" style="max-width: 720px;">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-info bg-opacity-25 py-3 d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0 text-dark">🚙 @Model.Marque @Model.Modele</h4>
+            <span class="badge bg-secondary">ID #@Model.Id</span>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                    <small class="text-muted text-uppercase fw-bold d-block">Catégorie de segment</small>
+                    <span class="badge bg-primary fs-6 mt-1">@(Model.CategoryVoiture?.Libelle ?? "Non catégorisée")</span>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-muted text-uppercase fw-bold d-block">Statut de disponibilité</small>
+                    @if (Model.EstDisponible)
+                    {
+                        <span class="badge bg-success fs-6 mt-1">✓ Disponible à la réservation</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger fs-6 mt-1">✕ En cours de location</span>
+                    }
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-muted text-uppercase fw-bold d-block">Immatriculation</small>
+                    <span class="fs-5 font-monospace fw-bold">@Model.Matricule</span>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-muted text-uppercase fw-bold d-block">Année modèle</small>
+                    <span class="fs-5">@Model.Annee</span>
+                </div>
+                <div class="col-sm-6">
+                    <small class="text-muted text-uppercase fw-bold d-block">Tarif Journalier</small>
+                    <span class="fs-4 text-success fw-bold">@Model.PrixJour.ToString("N2") TND</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary">← Retour à la flotte</a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">Modifier</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
