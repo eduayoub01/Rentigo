@@ -1,28 +1,95 @@
-# Rentigo — Car Rental Management System
+# 🚗 Rentigo
+### Car Rental Management System
 
-Rentigo is an ASP.NET Core MVC web application developed as part of a Web Development course project. It provides a dynamic car rental homepage and vehicle fleet management backed by a database.
+<p align="center">
+  <img src="https://img.shields.io/badge/ASP.NET%20Core-MVC-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt="ASP.NET Core MVC" />
+  <img src="https://img.shields.io/badge/C%23-Development-239120?style=for-the-badge&logo=csharp&logoColor=white" alt="C#" />
+  <img src="https://img.shields.io/badge/Entity%20Framework-Core-68217A?style=for-the-badge" alt="Entity Framework Core" />
+  <img src="https://img.shields.io/badge/Database-SQL%20Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" alt="SQL Server" />
+</p>
 
-## Features
+<p align="center">
+  A web application developed to simplify vehicle rental management through a dynamic interface and database integration.
+</p>
 
-- Dynamic homepage displaying vehicles from the database
-- Vehicle categories and category relationships
-- Vehicle availability status
-- Daily rental prices displayed in Tunisian dinars (DT)
-- Vehicle and category management
-- Responsive interface built with Bootstrap 5 and custom CSS
-- Entity Framework Core database integration
+---
 
-## Technologies Used
+## 👨‍🎓 Student Information
 
-- C#
-- ASP.NET Core MVC (.NET 10)
-- Entity Framework Core
+| Detail | Information |
+|:--|:--|
+| **Student Name** | Ayoub Rfifi |
+| **Class** | 3 IOT |
+| **Group** | 2 |
+| **Institution** | ENET'Com |
+| **Project** | Web Development |
+
+---
+
+## 📌 Project Overview
+
+**Rentigo** is an ASP.NET Core MVC web application developed as part of an academic Web Development project. It allows users to explore a vehicle fleet, view rental prices and availability, and manage vehicles and their categories through a database-driven application.
+
+## ✨ Features
+
+- 🏠 **Dynamic Homepage** — Displays vehicles retrieved from the database.
+- 🚘 **Vehicle Management** — Organizes vehicle information, including brand, model, registration number, and year.
+- 📂 **Category Management** — Groups vehicles into categories.
+- 💰 **Rental Pricing** — Displays daily rental prices in Tunisian dinars (DT).
+- ✅ **Availability Tracking** — Shows whether a vehicle is available for rental.
+- 🗄️ **Database Integration** — Uses Entity Framework Core to interact with SQL Server.
+- 📱 **Responsive Interface** — Uses Bootstrap and custom CSS for a clean user experience.
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|:--|:--|
+| C# | Application programming |
+| ASP.NET Core MVC | Web application architecture |
+| Entity Framework Core | Database access and migrations |
+| SQL Server LocalDB | Database management |
+| Razor | Dynamic HTML rendering |
+| HTML5 & CSS3 | Interface structure and styling |
+| Bootstrap 5 | Responsive design |
+| Git & GitHub | Version control and source code hosting |
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Visual Studio with ASP.NET and web development support
+- .NET 10 SDK
 - SQL Server LocalDB
-- Bootstrap 5
-- HTML, CSS, Razor
-- Git and GitHub
 
-## Project Structure
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/i-stefo/rentigo.git
+```
+
+**2. Open the project**
+
+Open `Rentigo.sln` or `Rentigo.csproj` in Visual Studio.
+
+**3. Configure the database**
+
+Check the connection string in `appsettings.json` and adjust it if necessary.
+
+**4. Apply database migrations**
+
+Run the following command in the project directory:
+
+```bash
+dotnet ef database update
+```
+
+**5. Run the application**
+
+Start the project from Visual Studio using `Ctrl + F5`.
+
+## 📁 Project Structure
 
 ```text
 Rentigo/
@@ -35,54 +102,26 @@ Rentigo/
 │   ├── Voiture/
 │   ├── CategoryVoiture/
 │   └── Shared/
+├── Migrations/
 ├── wwwroot/
 │   ├── css/
 │   └── js/
-├── Migrations/
 ├── Rentigo.csproj
 └── README.md
 ```
 
-## Getting Started
+## 🔗 GitHub Repository
 
-### Prerequisites
+<p align="center">
+  <a href="https://github.com/i-stefo/rentigo">
+    <img src="https://img.shields.io/badge/View%20Source%20Code-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="View source code on GitHub" />
+  </a>
+</p>
 
-- Visual Studio with ASP.NET and web development support
-- .NET 10 SDK
-- SQL Server LocalDB
+---
 
-### Run the Application
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/i-stefo/rentigo.git
-   ```
-
-2. Open `Rentigo.sln` or `Rentigo.csproj` in Visual Studio.
-
-3. Configure the database connection string in `appsettings.json` if needed.
-
-4. Open the Package Manager Console or a terminal in the project directory and apply the migrations:
-
-   ```bash
-   dotnet ef database update
-   ```
-
-5. Run the application with `Ctrl + F5` in Visual Studio, or use:
-
-   ```bash
-   dotnet run
-   ```
-
-## Database
-
-The application uses Entity Framework Core migrations to manage the database schema, including vehicles and their associated categories.
-
-## Author
-
-**Your Name**
-
-## License
-
-This project was developed for educational purposes.
+<p align="center">
+  <strong>RENTIGO</strong><br/>
+  <em>Academic Web Development Project — ENET'Com</em><br/>
+  Developed by <strong>Ayoub Rfifi</strong>
+</p>
