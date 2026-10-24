@@ -1,8 +1,149 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@model IEnumerable<Rentigo.Models.Voiture>
+
+@{
+    ViewData["Title"] = "Rentigo — Location de voitures";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="rentigo-home">
+
+    <section class="rentigo-hero">
+        <div class="rentigo-hero-content">
+            <span class="rentigo-eyebrow">
+                VOTRE VOYAGE COMMENCE ICI
+            </span>
+
+            <h1>
+                La liberté de<br />
+                <span>prendre la route.</span>
+            </h1>
+
+            <p>
+                Découvrez notre sélection de véhicules et trouvez
+                celui qui correspond à votre prochain trajet.
+            </p>
+
+            <div class="rentigo-hero-actions">
+                <a href="#catalogue" class="rentigo-btn rentigo-btn-primary">
+                    Explorer les véhicules <span>→</span>
+                </a>
+                <span class="rentigo-trust">
+                    Simple. Pratique. Fiable.
+                </span>
+            </div>
+        </div>
+
+        <div class="rentigo-hero-decoration">
+            <div class="rentigo-orbit"></div>
+            <div class="rentigo-hero-label">
+                <span>RENTIGO</span>
+                <small>DRIVE YOUR WAY</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogue" class="rentigo-catalogue">
+
+        <div class="rentigo-section-heading">
+            <div>
+                <span class="rentigo-eyebrow">NOTRE SÉLECTION</span>
+                <h2>Nos véhicules<span>.</span></h2>
+                <p>Le bon véhicule pour chaque destination.</p>
+            </div>
+
+            <div class="rentigo-fleet-count">
+                <strong>@(Model?.Count() ?? 0)</strong>
+                <span>véhicule(s)</span>
+            </div>
+        </div>
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="rentigo-empty">
+                <div class="rentigo-empty-icon">⌁</div>
+                <h3>Notre flotte se prépare</h3>
+                <p>
+                    Aucun véhicule n'est enregistré pour le moment.
+                    Revenez bientôt découvrir notre sélection.
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="rentigo-grid">
+                @foreach (var voiture in Model)
+                {
+                    <article class="rentigo-car-card">
+
+                        <div class="rentigo-car-visual">
+                            <div class="rentigo-car-placeholder">
+                                <span>R.</span>
+                            </div>
+
+                            <span class="rentigo-status @(voiture.EstDisponible ? "is-available" : "is-rented")">
+                                <span class="rentigo-status-dot"></span>
+                                @(voiture.EstDisponible ? "Disponible" : "En location")
+                            </span>
+
+                            <span class="rentigo-car-year">
+                                @voiture.Annee
+                            </span>
+                        </div>
+
+                        <div class="rentigo-car-info">
+                            <div class="rentigo-car-category">
+                                @(voiture.CategoryVoiture?.Libelle ?? "Véhicule")
+                            </div>
+
+                            <h3>
+                                @voiture.Marque @voiture.Modele
+                            </h3>
+
+                            <div class="rentigo-car-divider"></div>
+
+                            <div class="rentigo-car-bottom">
+                                <div>
+                                    <span class="rentigo-price-label">
+                                        À partir de
+                                    </span>
+                                    <div class="rentigo-price">
+                                        @voiture.PrixJour.ToString("N2")
+                                        <span>DT <small>/ jour</small></span>
+                                    </div>
+                                </div>
+
+                                @if (voiture.EstDisponible)
+                                {
+                                    <a asp-controller="Voiture"
+                                       asp-action="Details"
+                                       asp-route-id="@voiture.Id"
+                                       class="rentigo-car-link"
+                                       aria-label="Voir @voiture.Marque @voiture.Modele">
+                                        →
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="rentigo-car-link is-disabled">—</span>
+                                }
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+        }
+
+    </section>
+
+    <section class="rentigo-bottom-banner">
+        <div>
+            <span class="rentigo-eyebrow">PRÊT À PARTIR ?</span>
+            <h2>La route vous attend.</h2>
+            <p>Votre prochaine destination n'est qu'à un trajet.</p>
+        </div>
+        <a href="#catalogue" class="rentigo-btn rentigo-btn-light">
+            Voir la flotte <span>→</span>
+        </a>
+    </section>
+
 </div>
