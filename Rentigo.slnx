@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Rentigo/Rentigo.csproj" />
+  <Project Path="TP3-API/TP3-API.csproj" Id="c78d58c5-a1e5-46f5-98fa-0e22a4d735f7" />
 </Solution>
